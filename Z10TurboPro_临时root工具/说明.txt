@@ -1,0 +1,30 @@
+﻿# vivo/iQOO 临时root 工具箱
+
+## 使用方法
+1. 手机开启无线调试(开发者选项 → 无线调试)
+2. 双击 `一键临时root.bat`
+3. 按提示输入 IP:端口(或已连接则自动识别)
+4. **确认已重启手机后输入 y 继续**(关键: pristine boot_id)
+5. 脚本自动: 门禁检测 → 推送 so → 息屏注入 → 等待 su → ksud late-load 激活 KernelSU
+
+## 成功标志
+- 手机壁纸变为"提权成功 ROOT OK"画面
+- 脚本输出 `root 验证: uid=0`
+- KernelSU 管理器可见 root 授权
+
+## 文件说明
+| 文件 | 用途 |
+|---|---|
+| `一键临时root.bat` | 双击入口 |
+| `一键临时root.ps1` | 主脚本 |
+| `preload.so` | Z10 Turbo Pro 专用提权载荷 (162KB, CVE-2026-43499) |
+| `ksud` | KernelSU daemon (6328832, 与 App 内置一致) |
+| `adb.exe` + dll | adb 工具(脚本优先使用同目录版本) |
+
+## 注意事项
+- **临时 root**: 每次冷启动后需重跑(约 1-2 分钟)
+- **必须重启后立即执行**: 失败后需重启手机再试(pristine boot_id)
+- **内核门禁**: 内核 >= 6.6.140 已修复漏洞, 脚本会拒绝执行
+- 若 su 未出现: 脚本会输出 `/data/local/tmp/su_daemon.log` 诊断信息
+- 不写系统分区、不改 bootloader、无变砖风险(最坏内核 panic, 重启恢复)
+- 仅支持 iQOO Z10 Turbo Pro (pd2453)

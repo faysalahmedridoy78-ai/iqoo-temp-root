@@ -1,0 +1,27 @@
+# ===== 二进制构建产物 =====
+*.apk
+*.idsig
+*.zip
+*.so
+*.ko
+*.exe
+*.dll
+*.pyc
+__pycache__/
+
+# ===== 本地工具链二进制 =====
+ksud
+glt
+w2host
+
+# ===== 历史版本归档 APK =====
+releases/v*/
+!releases/README.md
+
+# ===== 卡密系统（不公开）=====
+gen_license.py
+
+# ===== 临时/日志 =====
+*.log
+*.bak
+生成日志给豆包看
